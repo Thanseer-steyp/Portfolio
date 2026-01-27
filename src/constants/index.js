@@ -1,4 +1,3 @@
-
 import {
   logo,
   backend,
@@ -6,8 +5,11 @@ import {
   mobile,
   web,
   github,
+  gitlab,
   menu,
   close,
+  python,
+  postgresql,
   css,
   gearXpert,
   project2,
@@ -16,7 +18,6 @@ import {
   express,
   aws,
   mui,
-  
   gsap,
   framer,
   figma,
@@ -32,20 +33,17 @@ import {
   firstTestimonial,
   secondTestimonial,
   thirdTestimonial,
-} from '../assets'
-
+  nextjs,
+  django,
+} from "../assets";
 
 // Import Tekisky separately
 import tekisky from "../assets/company/tekisky.png";
 
-
 export const navLinks = [
-
-
   {
     id: "about",
     title: "About",
-    
   },
   {
     id: "work",
@@ -89,81 +87,60 @@ const technologies = [
     name: "JavaScript",
     icon: javascript,
   },
+
   {
     name: "React JS",
     icon: reactjs,
   },
   {
-    name: "gsap",
-    icon: gsap,
-  },
-  {
-    name: "framer",
-    icon: framer,
-  },
-
- 
-  {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
-    name: "figma",
-    icon: figma,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
+    name: "nextjs",
+    icon: nextjs,
   },
   {
     name: "Tailwind CSS",
     icon: tailwind,
   },
   {
-    name: "Material Ui",
-    icon: mui,
+    name: "python",
+    icon: python,
+  },
+  ,
+  {
+    name: "django",
+    icon: django,
   },
   {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "Express Js",
-    icon: express,
-  },
-  {
-    name: "AWS",
-    icon: aws,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "MySql",
-    icon: mysql,
+    name: "Postgresql",
+    icon: postgresql,
   },
 
   {
     name: "git",
     icon: git,
   },
- 
-
+  {
+    name: "github",
+    icon: github,
+  },
+  {
+    name: "gitlab",
+    icon: gitlab,
+  },
 ];
 
 const experiences = [
   {
     title: "Full-Stack Developer",
-    company_name: "Tekisky",
-    icon: tekisky,
-    iconBg: "#383E56",
-    date: "Jan 2023 - present",
+    company_name: "Talrop",
+    icon: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/01-09-2022/Talrop_logo.svg",
+    iconBg: "#fff",
+    date: "June 2025 - present",
     points: [
-      "Developing and maintaining web applications using MERN technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Developing scalable backend systems using Python, Django, and Django REST Framework.",
+      "Creating and integrating REST APIs consumed by React-based frontend applications.",
+      "Optimizing database queries and ensuring application performance and security.",
+      "Implementing responsive and interactive UIs using React and modern JavaScript practices.",
+      "Participating in code reviews and maintaining clean, maintainable codebases.",
     ],
   },
 ];
@@ -171,7 +148,7 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Huzaif proved me wrong.",
+      "Didn't think a website could match our product's beauty, but Thanseer made it happen!",
     name: "MD Mustaqeem",
     designation: "Ecommerce",
     company: "QuickMart",
@@ -179,90 +156,67 @@ const testimonials = [
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Huzaif does.",
-    name: "Abdul Raheman",
-    designation: "Ecommerce Business",
-    company: "justbuyz",
+      "I've never met a web developer who truly cares about their clients' success like Thanseer does.",
+    name: "Sameer Panavoor",
+    designation: "Writer",
+    company: "Mondana Universe",
     image: secondTestimonial,
   },
   {
     testimonial:
-      "After Huzaif optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "James Wang",
-    designation: "CTO",
+      "After Thanseer optimized our website, our traffic increased by 50%. We can't thank them enough!",
+    name: "Sinan",
+    designation: "Student",
     company: "456 Enterprises",
     image: thirdTestimonial,
   },
 ];
-
 const projects = [
   {
-    name: "Tekisky Mart",
+    name: "She  Has",
     description:
-      "Tekisky Mart is a web-based platform that allows users to search, explore, and purchase a wide range of products from various providers, offering a seamless and efficient shopping experience.",
+      "She is a premium kids clothing brand offering stylish, comfortable, and durable apparel made from high-quality imported materials. The platform provides a smooth shopping experience with modern design, secure checkout, and scalable performance tailored for growing brands.",
     tags: [
       {
-        name: "react",
+        name: "python",
         color: "blue-text-gradient",
       },
       {
-        name: "tailwind",
-        color: "white-text-gradient",
+        name: "django",
+        color: "green-text-gradient",
       },
       {
-        name: "node",
+        name: "react",
         color: "pink-text-gradient",
       },
       {
-        name: "mongodb",
-        color: "green-text-gradient",
+        name: "nextjs",
+        color: "white-text-gradient",
       },
- 
     ],
     image: project2,
     source_code_link: "https://github.com/",
   },
   {
-    name: "GearXpert",
+    name: "Furnicon",
     description:
-      "GearXpert is your ultimate destination for premium auto parts and accessories, Whether you're an automobile enthusiast or a professional, find everything you need to upgrade, repair.",
+      "Furnicon is a modern furniture e-commerce platform offering a wide range of high-quality furniture at budget-friendly prices. The website is designed for performance and usability, allowing customers to explore, compare, and purchase furniture effortlessly and securely online.",
     tags: [
       {
-        name: "react",
+        name: "python",
         color: "blue-text-gradient",
       },
       {
-        name: "emailJs",
+        name: "django",
         color: "green-text-gradient",
       },
       {
-        name: "Gsap",
+        name: "react",
         color: "pink-text-gradient",
       },
-    ],
-    image: gearXpert,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "GoGroove-Ecommerce",
-    description:
-      "Go-Groove is your ultimate destination for premium products across various categories. Whether you're a savvy shopper or a professional, enhance, and simplify your lifestyle—all in one place!",
-    tags: [
       {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "express",
+        name: "nextjs",
         color: "white-text-gradient",
-      },
-      {
-        name: "node",
-        color: "green-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "green-text-gradient",
       },
     ],
     image: project3,

@@ -22,7 +22,7 @@ const Computers = () => {
       <primitive
         object={computer.scene}
         scale={0.75} // Keep scale normal for desktop
-        position={[0, -3.25, -1.5]}
+        position={[0.25, -3.75, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -55,7 +55,7 @@ const ComputersCanvas = () => {
         camera={{ position: [20, 3, 5], fov: 25 }}
         gl={{ preserveDrawingBuffer: true }}
       >
-        <Suspense fallback={<CanvasLoader />}>
+        <Suspense>
           <OrbitControls
             enableZoom={false}
             maxPolarAngle={Math.PI / 2}
