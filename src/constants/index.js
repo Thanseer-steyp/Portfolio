@@ -175,7 +175,7 @@ const projects = [
   {
     name: "She  Has",
     description:
-      "She is a premium kids clothing brand offering stylish, comfortable, and durable apparel made from high-quality imported materials. The platform provides a smooth shopping experience with modern design, secure checkout, and scalable performance tailored for growing brands.",
+      "She Has is a premium kids clothing brand offering stylish, comfortable, and durable apparel made from high-quality imported materials. The platform provides a smooth shopping experience with modern design, secure checkout, and scalable performance tailored for growing brands.",
     tags: [
       {
         name: "python",
