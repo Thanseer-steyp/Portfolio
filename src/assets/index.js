@@ -17,6 +17,8 @@ import express from './tech/express.png';
 import aws from './tech/aws.png';
 import mui from './tech/mui.png'
 import git from "./tech/git.png";
+import furnicon from "./furnicon.png";
+import trendzone from "./trendzone.png";
 import html from "./tech/html.png";
 import javascript from "./tech/javascript.png";
 import mongodb from "./tech/mongodb.png";
@@ -64,6 +66,8 @@ export {
   git,
   html,
   javascript,
+  furnicon,
+  trendzone,
   mongodb,
   nodejs,
   reactjs,
