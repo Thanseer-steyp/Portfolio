@@ -36,8 +36,8 @@ const ComputersCanvas = () => {
         <pointLight intensity={1} />
         <primitive
           object={computer.scene}
-          scale={isMobile ? 0.4 : 0.75} // 0.75 / 4 ≈ 0.18
-          position={isMobile ? [0, -3, -0.5] : [0.25, -2.25, -1.5]}
+          scale={isMobile ? 0.48 : 0.75} // 0.75 / 4 ≈ 0.18
+          position={isMobile ? [0, -3, -0.7] : [0.25, -2.25, -1.5]}
           rotation={[-0.01, -0.2, -0.1]}
         />
       </mesh>
