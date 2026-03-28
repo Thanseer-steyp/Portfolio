@@ -28,6 +28,8 @@ import {
   nodejs,
   reactjs,
   redux,
+  trendzone,
+  furnicon,
   tailwind,
   threejs,
   firstTestimonial,
@@ -173,9 +175,11 @@ const testimonials = [
 ];
 const projects = [
   {
-    name: "She  Has",
+    name: "TrendZone",
     description:
-      "She Has is a premium kids clothing brand offering stylish, comfortable, and durable apparel made from high-quality imported materials. The platform provides a smooth shopping experience with modern design, secure checkout, and scalable performance tailored for growing brands.",
+
+      "A premium men's wear brand focused on style, comfort, and durability, using high-quality materials. The platform ensures a smooth shopping experience with a modern interface, secure checkout, and scalable performance designed for growing fashion businesses.",
+
     tags: [
       {
         name: "python",
@@ -186,15 +190,15 @@ const projects = [
         color: "green-text-gradient",
       },
       {
-        name: "react",
+        name: "react nextjs",
         color: "pink-text-gradient",
       },
       {
-        name: "nextjs",
+        name: "Mysql",
         color: "white-text-gradient",
       },
     ],
-    image: project2,
+    image: trendzone,
     source_code_link: "https://github.com/",
   },
   {
@@ -211,16 +215,16 @@ const projects = [
         color: "green-text-gradient",
       },
       {
-        name: "react",
+        name: "react nextjs",
         color: "pink-text-gradient",
       },
       {
-        name: "nextjs",
+        name: "Mysql",
         color: "white-text-gradient",
       },
     ],
-    image: project3,
-    source_code_link: "https://github.com/",
+    image: furnicon,
+    source_code_link: "https://furnicon.vercel.app/",
   },
 ];
 
