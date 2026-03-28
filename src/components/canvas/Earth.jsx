@@ -16,6 +16,7 @@ const EarthCanvas = () => {
   return (
     <Canvas
       shadows
+      style={{ width: "100%", height: "100%", touchAction: "pan-y" }}
       frameloop='demand'
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
