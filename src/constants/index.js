@@ -178,6 +178,7 @@ const projects = [
     name: "TrendZone",
     description:
       "A premium men's wear brand focused on style, comfort, and durability, using high-quality materials. The platform ensures a smooth shopping experience with a modern interface, secure checkout, and scalable performance designed for growing fashion businesses.",
+
     tags: [
       {
         name: "python",
