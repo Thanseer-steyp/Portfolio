@@ -17,7 +17,7 @@ const useGsap = (elementRef, animation, delay = 0) => {
         delay,
         scrollTrigger: {
           trigger: elementRef.current,
-          start: "top 85%",
+          start: "top 75%",
           toggleActions: "play none none reverse",
         },
       });
