@@ -43,18 +43,11 @@ import {
 import tekisky from "../assets/company/tekisky.png";
 
 export const navLinks = [
-  {
-    id: "about",
-    title: "About",
-  },
-  {
-    id: "work",
-    title: "Work",
-  },
-  {
-    id: "contact",
-    title: "Contact",
-  },
+  { id: "home", title: "Home", type: "route", path: "/" },
+  { id: "about", title: "About", type: "scroll" },
+  { id: "work", title: "Work", type: "scroll" },
+  { id: "contact", title: "Contact", type: "scroll" },
+  { id: "others", title: "Others", type: "route", path: "/others" },
 ];
 
 const services = [

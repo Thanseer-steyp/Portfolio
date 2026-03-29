@@ -11,6 +11,18 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (toggle) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [toggle]);
+
+  useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       if (scrollTop > 100) {
@@ -33,64 +45,114 @@ const Navbar = () => {
         scrolled ? "bg-primary" : "bg-transparent"
       }`}
     >
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
+      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
-          to='/'
-          className='flex items-center gap-2'
+          to="/"
+          className="flex items-center gap-2"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
+          <img src={logo} alt="logo" className="w-9 h-9 object-contain" />
+          <p className="text-white text-[18px] font-bold cursor-pointer flex ">
             Thanseer &nbsp;
           </p>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${
-                active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
-          ))}
+        <ul className="list-none hidden sm:flex flex-row gap-10">
+          {navLinks.map((nav) =>
+            nav.type === "route" ? (
+              <Link
+                key={nav.id}
+                to={nav.path}
+                className={`${
+                  active === nav.title ? "text-white" : "text-secondary"
+                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                onClick={() => setActive(nav.title)}
+              >
+                {nav.title}
+              </Link>
+            ) : (
+              <li
+                key={nav.id}
+                className={`${
+                  active === nav.title ? "text-white" : "text-secondary"
+                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                onClick={() => setActive(nav.title)}
+              >
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              </li>
+            ),
+          )}
         </ul>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
+        <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
             src={toggle ? close : menu}
-            alt='menu'
-            className='w-[28px] h-[28px] object-contain'
+            alt="menu"
+            className="w-[28px] h-[28px] object-contain z-40"
             onClick={() => setToggle(!toggle)}
           />
 
+          {/* 🔥 Overlay */}
+          {toggle && (
+            <div
+              className="fixed inset-0 bg-black/30 z-20"
+              onClick={() => setToggle(false)}
+            />
+          )}
+
+          {/* 🔥 Drawer */}
           <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            className={`fixed top-0 right-0 h-screen w-[70%] z-30 transform transition-transform duration-300 ${
+              toggle ? "translate-x-0" : "translate-x-full"
+            } backdrop-blur-md bg-white/10 border-l border-white/20`}
           >
-            <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
-              {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
-                  }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
-                >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                </li>
-              ))}
-            </ul>
+            <div className="p-6 flex flex-col gap-6 mt-16">
+              {navLinks.map((nav) =>
+                nav.type === "route" ? (
+                  <Link
+                    key={nav.id}
+                    to={nav.path}
+                    className={`text-[16px] font-medium rounded-lg text-center p-1.5 backdrop-blur-sm transform transition-all duration-300 ${
+                      active === nav.title
+                        ? "text-white -translate-x-3"
+                        : "text-gray-400"
+                    } hover:scale-105`}
+                    onClick={() => {
+                      setToggle(false);
+                      setActive(nav.title);
+                    }}
+                  >
+                    {nav.title}
+                  </Link>
+                ) : (
+                  <a
+                    key={nav.id}
+                    href={`#${nav.id}`}
+                    className={`text-[16px] font-medium rounded-lg text-center p-1.5 backdrop-blur-sm transform transition-all duration-300 ${
+                      active === nav.title
+                        ? "text-white -translate-x-3"
+                        : "text-gray-400"
+                    } hover:scale-105`}
+                    onClick={(e) => {
+                      e.preventDefault(); // 🔥 important
+
+                      const section = document.getElementById(nav.id);
+                      if (section) {
+                        section.scrollIntoView({ behavior: "smooth" });
+                      }
+
+                      setToggle(false);
+                      setActive(nav.title);
+                    }}
+                  >
+                    {nav.title}
+                  </a>
+                ),
+              )}
+            </div>
           </div>
         </div>
       </div>

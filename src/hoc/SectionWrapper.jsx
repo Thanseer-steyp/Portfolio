@@ -8,6 +8,7 @@ const StarWrapper = (Component, idName) =>
     return (
       <motion.section
         variants={staggerContainer()}
+        id={idName}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.25 }}
