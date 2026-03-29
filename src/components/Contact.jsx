@@ -15,6 +15,11 @@ const Contact = () => {
     message: "",
   });
 
+  const isFormValid =
+  form.name.trim() !== "" &&
+  form.email.trim() !== "" &&
+  form.message.trim() !== "";
+
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -116,7 +121,8 @@ const Contact = () => {
 
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-full text-white font-bold shadow-md shadow-primary'
+            disabled={!isFormValid || loading}
+            className={`bg-tertiary py-3 px-8 rounded-xl outline-none w-full  font-bold shadow-md shadow-primary ${isFormValid? "text-white" : "cursor-not-allowed text-white/50"}`}
           >
             {loading ? "Sending..." : "Send"}
           </button>
