@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
@@ -9,6 +10,8 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (toggle) {
@@ -21,11 +24,44 @@ const Navbar = () => {
       document.body.style.overflow = "auto";
     };
   }, [toggle]);
+  useEffect(() => {
+    const sections = navLinks
+      .filter((nav) => nav.type !== "route") // only section links
+      .map((nav) => document.getElementById(nav.id));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+
+            const matched = navLinks.find((nav) => nav.id === id);
+            if (matched) {
+              setActive(matched.title);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.6, // how much visible to trigger
+      },
+    );
+
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
+      if (scrollTop > 0) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -42,7 +78,8 @@ const Navbar = () => {
       className={`${
         styles.paddingX
       } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+        scrolled ? "backdrop-blur-md" : "bg-transparent"
+        //bg-primary
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -81,7 +118,35 @@ const Navbar = () => {
                 } hover:text-white text-[18px] font-medium cursor-pointer`}
                 onClick={() => setActive(nav.title)}
               >
-                <a href={`#${nav.id}`}>{nav.title}</a>
+                <a
+                  href={`#${nav.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    if (location.pathname !== "/") {
+                      // Go to home first
+                      navigate("/");
+
+                      // Wait for page render then scroll
+                      setTimeout(() => {
+                        const section = document.getElementById(nav.id);
+                        if (section) {
+                          section.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }, 100);
+                    } else {
+                      // Already on home → just scroll
+                      const section = document.getElementById(nav.id);
+                      if (section) {
+                        section.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }
+
+                    setActive(nav.title);
+                  }}
+                >
+                  {nav.title}
+                </a>
               </li>
             ),
           )}

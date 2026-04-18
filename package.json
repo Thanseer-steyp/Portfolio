@@ -4,14 +4,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist",
-  "preview": "vite preview"
-},
-
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
     "@gsap/react": "^2.1.2",
@@ -19,7 +18,7 @@
     "@react-three/drei": "^9.56.24",
     "@react-three/fiber": "^8.11.1",
     "email-js": "^2.0.3",
-    "framer-motion": "^9.0.7",
+    "framer-motion": "^9.1.7",
     "gsap": "^3.12.7",
     "maath": "^0.5.2",
     "react": "^18.2.0",
@@ -41,5 +40,4 @@
     "tailwindcss": "^3.2.6",
     "vite": "^4.1.0"
   }
-  
 }
