@@ -5,12 +5,13 @@ import Foundation from "./pages/Foundation";
 import { Navbar } from "./components";
 import Basics from "./pages/Pattern-basics";
 import PatternBoard from "./pages/Pattern-board";
+import NotFound from "./pages/NotFound";
 
 const Layout = () => {
   const location = useLocation();
 
   // ❗ hide navbar on this route
-  const hideNavbar = location.pathname === "/foundation/pattern-board";
+  const hideNavbar = location.pathname === "/foundation/pattern-board" ;
 
   return (
     <>
@@ -21,6 +22,8 @@ const Layout = () => {
         <Route path="/foundation" element={<Foundation />} />
         <Route path="/foundation/basics-of-patterns" element={<Basics />} />
         <Route path="/foundation/pattern-board" element={<PatternBoard />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
