@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "./pages/home";
-import Foundation from "./pages/foundation";
+import Foundation from "./pages/Foundation";
 import { Navbar } from "./components";
-import Basics from "./pages/pattern-basics";
-import PatternBoard from "./pages/pattern-board";
+import Basics from "./pages/Pattern-basics";
+import PatternBoard from "./pages/Pattern-board";
 
 const Layout = () => {
   const location = useLocation();
@@ -19,8 +19,8 @@ const Layout = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/foundation" element={<Foundation />} />
-        <Route path="foundation/basics-of-patterns" element={<Basics />} />
-        <Route path="foundation/pattern-board" element={<PatternBoard />} />
+        <Route path="/foundation/basics-of-patterns" element={<Basics />} />
+        <Route path="/foundation/pattern-board" element={<PatternBoard />} />
       </Routes>
     </>
   );
