@@ -4,26 +4,29 @@ import { useEffect, useRef, useState } from "react";
 export default function Home() {
   const routes = [
     {
-      name: "Basics of Patterns",
-      path: "/foundation/basics-of-patterns",
-      lesson: "01",
-      icon: "⬡",
-      desc: "Learn the foundational concepts behind pattern logic and structure in C programs.",
-      meta: "FOUNDATION · INTRO",
-      color: "purple",
-    },
-    {
       name: "Pattern Board",
-      path: "/foundation/pattern-board",
-      lesson: "02",
+      path: "/technical/pattern-board",
+      module: "01",
       icon: "▦",
       desc: "Visualize and practice building patterns interactively on the board.",
-      meta: "FOUNDATION · PRACTICE",
+      meta: "FOUNDATION · PATTERN",
       color: "teal",
+      access: true,
+    },
+    {
+      name: "Array Visualization",
+      path: "/technical/array",
+      module: "02",
+      icon: "⬡",
+      desc: "Learn the foundational concepts behind array logic and structure in C programs.",
+      meta: "FOUNDATION · ARRAY",
+      color: "purple",
+      access: false,
     },
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [shakingIndex, setShakingIndex] = useState(null);
   const canvasRef = useRef(null);
   const animRef = useRef(null);
 
@@ -62,7 +65,12 @@ export default function Home() {
       }
 
       // Scanline
-      const grad = ctx.createLinearGradient(0, scanY - 2, canvas.width, scanY + 2);
+      const grad = ctx.createLinearGradient(
+        0,
+        scanY - 2,
+        canvas.width,
+        scanY + 2,
+      );
       grad.addColorStop(0, "transparent");
       grad.addColorStop(0.5, "rgba(83,74,183,0.35)");
       grad.addColorStop(1, "transparent");
@@ -81,7 +89,18 @@ export default function Home() {
       window.removeEventListener("resize", resize);
     };
   }, []);
+  const [message, setMessage] = useState("");
 
+  const handleClick = (e, route, index) => {
+    if (!route.access) {
+      e.preventDefault();
+      setMessage("This module is under development. Stay tuned!");
+      setTimeout(() => setMessage(""), 3000);
+
+      setShakingIndex(index);
+      setTimeout(() => setShakingIndex(null), 500);
+    }
+  };
   const colorMap = {
     purple: {
       badge: "bg-[#EEEDFE] text-[#534AB7]",
@@ -100,6 +119,7 @@ export default function Home() {
       border: "group-hover:border-[#5DCAA5]",
     },
   };
+  const readyModules = routes.filter((route) => route.access).length;
 
   return (
     <div className="relative min-h-screen bg-hero-pattern overflow-hidden">
@@ -118,13 +138,13 @@ export default function Home() {
             className="text-xs font-mono tracking-[3px] uppercase text-gray-400 mb-2"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
-            foundation module
+            Weekly Modules
           </p>
           <h1
             className="text-4xl font-extrabold tracking-tight text--white"
             style={{ fontFamily: "'Syne', sans-serif" }}
           >
-            C Program Basics
+            Brotoype Program
           </h1>
           <div className="mt-3 flex items-center justify-center gap-2">
             <span className="inline-block w-8 h-[1px] bg-gray-300" />
@@ -147,6 +167,7 @@ export default function Home() {
             return (
               <Link
                 key={index}
+                onClick={(e) => handleClick(e, route, index)}
                 to={route.path}
                 className={`group relative bg-white rounded-2xl border border-gray-200 p-6 overflow-hidden transition-all duration-300 ${c.border}
                   hover:-translate-y-1 hover:shadow-xl
@@ -162,9 +183,10 @@ export default function Home() {
                 <div
                   className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300"
                   style={{
-                    background: route.color === "purple"
-                      ? "radial-gradient(ellipse at 30% 30%, rgba(83,74,183,0.09), transparent 70%)"
-                      : "radial-gradient(ellipse at 70% 30%, rgba(13,158,117,0.09), transparent 70%)",
+                    background:
+                      route.color === "purple"
+                        ? "radial-gradient(ellipse at 30% 30%, rgba(83,74,183,0.09), transparent 70%)"
+                        : "radial-gradient(ellipse at 70% 30%, rgba(13,158,117,0.09), transparent 70%)",
                     opacity: isHovered ? 1 : 0,
                   }}
                 />
@@ -182,15 +204,39 @@ export default function Home() {
                 {/* Card header */}
                 <div className="flex items-start justify-between mb-4 relative">
                   <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${c.icon} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
+                    className={`w-10 h-10 rounded-xl flex items-center group-hover:scale-110 justify-center text-lg ${c.icon} transition-transform duration-300
+  ${route.access ? " group-hover:rotate-6" : ""}
+`}
                   >
-                    {route.icon}
+                    {route.access ? (
+                      // Unlock
+                      <svg
+                        className="w-4 h-4 text-emerald-500"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M17 8h-1V6a4 4 0 10-8 0h2a2 2 0 114 0v2H7a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2v-8a2 2 0 00-2-2z" />
+                      </svg>
+                    ) : (
+                      // Lock (with animation)
+                      <svg
+                        className={`w-4 h-4 transition-all duration-200 ${
+                          shakingIndex === index
+                            ? "text-red-500 animate-shake"
+                            : "text-gray-400"
+                        }`}
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 2a4 4 0 00-4 4v2H7a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2v-8a2 2 0 00-2-2h-1V6a4 4 0 00-4-4zm-2 6V6a2 2 0 114 0v2h-4z" />
+                      </svg>
+                    )}
                   </div>
                   <span
                     className={`text-[10px] font-semibold px-2.5 py-1 rounded-full tracking-wide ${c.badge}`}
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
-                    LESSON {route.lesson}
+                    MODULE {route.module}
                   </span>
                 </div>
 
@@ -223,6 +269,11 @@ export default function Home() {
             );
           })}
         </div>
+        {message && (
+          <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-5 py-2 rounded-lg shadow-lg text-sm z-50">
+            {message}
+          </div>
+        )}
 
         {/* Status bar */}
         <div className="mt-8 flex items-center gap-2">
@@ -231,7 +282,7 @@ export default function Home() {
             className="text-[11px] text-gray-400 tracking-widest uppercase"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
-            2 modules ready
+            {readyModules} module{readyModules !== 1 ? "s" : ""} ready
           </span>
         </div>
       </div>
@@ -253,6 +304,17 @@ export default function Home() {
         .animate-fade-in-down {
           animation: fade-in-down 0.6s ease both;
         }
+          @keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease;
+}
       `}</style>
     </div>
   );

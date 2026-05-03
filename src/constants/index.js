@@ -47,7 +47,7 @@ export const navLinks = [
   { id: "about", title: "About", type: "scroll" },
   { id: "work", title: "Work", type: "scroll" },
   { id: "contact", title: "Contact", type: "scroll" },
-  { id: "foundation", title: "Foundation", type: "route", path: "/foundation" },
+  { id: "technical", title: "Technical", type: "route", path: "/technical" },
 ];
 
 const services = [

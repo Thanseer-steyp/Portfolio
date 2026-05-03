@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const PatternBasics = () => {
+const Array = () => {
   const text1 = "Thank you for visiting";
   const text2 = "We will update soon";
 
@@ -49,4 +49,4 @@ const PatternBasics = () => {
   );
 };
 
-export default PatternBasics;
+export default Array;
